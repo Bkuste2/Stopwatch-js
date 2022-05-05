@@ -1,0 +1,20 @@
+body{
+    background-color: rgb(5, 44, 44);
+}
+
+.middle{
+    position: absolute;
+    width: 50vw;
+    height: 50vh;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons{
+    display: inline-block;
+}
