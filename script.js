@@ -54,6 +54,7 @@ let rodando = false;
 
 const start = () => {
     if(rodando == false){
+        document.querySelector('.circle').style.animation = 'animateCircle 0.5s linear infinite'
         stopwatch = setInterval(() => {
             incrementTime();
         }, 10)
@@ -67,17 +68,20 @@ const start = () => {
 
 const stop = () => {
     clearInterval(stopwatch)
+    document.querySelector('.circle').style.animation = 'stop'
 }
 
 const reset = () => {
-    
-    stop()
     hour = 0;
     minute = 0;
     second = 0;
     millisecond = 0;
 
     escrever()
+    stop()
+
+    document.querySelector('.circle').style.animation = 'none'
+    rodando = false
 }
 
 const incrementTime = () =>{
