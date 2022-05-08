@@ -2,12 +2,15 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    outline: none;
 }
 body{
     background-color: rgb(0, 0, 0);
 
     --color-pink:#ff0066; 
     --color-blue: #33ccff;
+    --color-green: #02e367;
 }
 
 .middle{
@@ -114,6 +117,8 @@ body{
 
 .buttons button:hover{
     cursor: pointer;
+    border-color: var(--color-green) !important;
+    color: var(--color-green) !important;
 }
 
 #start{

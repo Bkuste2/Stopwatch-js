@@ -52,7 +52,7 @@ const escrever = () => {
 
 let rodando = false;
 
-const start = () => {
+const startOnCircle = () => {
     if(rodando == false){
         document.querySelector('.circle').style.animation = 'animateCircle 0.5s linear infinite'
         stopwatch = setInterval(() => {
@@ -62,13 +62,23 @@ const start = () => {
     }
     else{
         stop()
-        rodando = false
     }
 }
 
+
+const startOnButton = () => {
+    if(rodando == false){
+        document.querySelector('.circle').style.animation = 'animateCircle 0.5s linear infinite'
+        stopwatch = setInterval(() => {
+            incrementTime();
+        }, 10)
+        rodando = true
+    }
+}
 const stop = () => {
     clearInterval(stopwatch)
-    document.querySelector('.circle').style.animation = 'stop'
+    document.querySelector('.circle').style.animation = 'none'
+    rodando = false
 }
 
 const reset = () => {
