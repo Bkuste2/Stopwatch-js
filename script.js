@@ -1,3 +1,5 @@
+let currentTime = document.getElementById('time')
+
 let hour = 0;
 let minute = 0;
 let second = 0;
@@ -5,53 +7,92 @@ let millisecond = 0;
 
 let stopwatch;
 
-const start = () =>{
-    stop()
-    stopwatch = setInterval(() =>{
-        timer();
-    },10);
+
+let stringHour = ''
+let stringMinute = ''
+let stringSecond = ''
+let stringMillisecond = ''
+const escrever = () => {
+
+    if(minute < 10){
+        stringMinute = `0${minute}`
+    }
+    else{
+        stringMinute = minute
+    }
+    if(hour < 10){
+        stringHour = `0${hour}`
+    }
+    else{
+        stringHour = hour
+    }
+    if(second < 10){
+        stringSecond = `0${second}`
+    }
+    else{
+        stringSecond = second
+    }
+    if(millisecond < 10){
+        stringMillisecond = `0${millisecond}`
+    }
+    else{
+        stringMillisecond = millisecond
+    }
+
+    if(hour >= 1){
+        currentTime.innerHTML = `${stringHour}:${stringMinute}:${stringSecond}`
+    }
+    else{
+        currentTime.innerHTML = `${stringMinute}:${stringSecond}:${stringMillisecond}`
+    }
+
+
 }
 
-const stop = () =>{
+
+let rodando = false;
+
+const start = () => {
+    if(rodando == false){
+        stopwatch = setInterval(() => {
+            incrementTime();
+        }, 10)
+        rodando = true
+    }
+    else{
+        stop()
+        rodando = false
+    }
+}
+
+const stop = () => {
     clearInterval(stopwatch)
 }
 
-const reset = () =>{
-    stop();
+const reset = () => {
+    
+    stop()
     hour = 0;
     minute = 0;
     second = 0;
     millisecond = 0;
-    document.getElementById('counter').innerHTML = hour + ":" + minute + ":" + second + ":" + millisecond;
+
+    escrever()
 }
 
-const timer = () =>{
-    if(millisecond < 99){
-        millisecond++;
-    }
-    else{
-        millisecond = 0;
+const incrementTime = () =>{
+    millisecond++
+    if(millisecond >= 100){
         second++
-        if(second >= 60){
-            second = 0;
-            minute++;
-            if(minute >= 60){
-                minute = 0;
-                hour++
-            }
-        }
+        millisecond = 0;
     }
-    document.getElementById('counter').innerHTML = hour + ":" + minute + ":" + second + ":" + millisecond;
-}
-
-const press = (e)=>{
-    if(e.code === "Space"){
-        start()
+    if(second >= 60){
+        minute++
+        second = 0;
     }
-    if(e.code === "Escape"){
-        stop()
+    if(minute >= 60){
+        hour++
+        minute = 0;
     }
-    if(e.code === "Delete"){
-        reset()
-    }
+    escrever()
 }
